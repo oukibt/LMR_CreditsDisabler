@@ -78,7 +78,7 @@ THE_VOID_TEXT origFuncCredits = NULL;
 void* HOOK_Credits(void* thisptr, char* str)
 {
     const int start = 20;
-    const int readLength = 7800;
+    const int readLength = 20000;
 
     int i = 0, j;
     int startPointer = 0x0;
@@ -92,7 +92,7 @@ void* HOOK_Credits(void* thisptr, char* str)
 
     if (j != sizeof(labelCredits))
     {
-        if (DEBUG_ENABLED) printfn("Skip label | j: %d", j);
+        if (DEBUG_ENABLED) printfn("Skip label");
 
         return origFuncCredits(thisptr, str);
     }
@@ -143,9 +143,11 @@ void* HOOK_Credits(void* thisptr, char* str)
 
     memcpy(data, str + endChangePointer, szAlloc);
     memcpy(str + changePointer, data, szAlloc);
-    
+
+    free(data);
+
     j = endPointer - (endChangePointer - changePointer);
-    
+
     for (i = j; i < endPointer; i++)
     {
         if (str[i] == NULL) continue;
@@ -198,7 +200,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 
             DisableThreadLibraryCalls(hModule);
             CreateThread(nullptr, 0, listener, hModule, 0, nullptr);
-            
+
             break;
         }
 
@@ -232,7 +234,7 @@ struct stHook
     LPVOID* orig = 0x0;
 };
 
-std::vector<stHook> hooks;          
+std::vector<stHook> hooks;
 
 DWORD WINAPI listener(LPVOID lpReserved)
 {
