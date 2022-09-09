@@ -27,7 +27,7 @@ const bool DEBUG_ENABLED = true;
 const bool DEBUG_ENABLED = false;
 #endif
 
-const QWORD creditsAddr = 0x4AD350;
+const QWORD creditsAddr = 0x4ABEE0; // 0x4AD350 - old addr
 
 //
 
