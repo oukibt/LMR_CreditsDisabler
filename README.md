@@ -1,4 +1,4 @@
-# LMR_CreditsDisabler
+# [DEPRECATED] LMR_CreditsDisabler
 
 ### Download: https://github.com/oukibt/LMR_CreditsDisabler/releases
 
